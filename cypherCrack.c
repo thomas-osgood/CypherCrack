@@ -62,13 +62,7 @@ int main(void) {
 
 	/* Build Histogram For Cypher */
 	buildHistogram(cypher, cypherSize);
-
-	int f_size = getFileSize("histogram.txt");
-	char *fileread = (char*) malloc ( sizeof(char) * f_size );
-        fileread = readFileText("histogram.txt", f_size);
-	printf("\nCONTENTS::\n%s\n", fileread);
-
-	free(fileread);
+	system("python3 graphHist.py");
 
 	/* Return EXIT_SUCCESS */
 	return 0;
