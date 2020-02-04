@@ -101,7 +101,7 @@ void buildHistogram(char crypt[], int size) {
 	}
 	fclose(fp);
 
-	printf("[*] Histogram Written To %s ...\n", histogramFile);
+	printf("[+] Histogram Written To %s ...\n", histogramFile);
 
 
 	return;
