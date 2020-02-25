@@ -53,6 +53,8 @@ int main(void) {
 		cypher[i] = tolower(cypher[i]);
 	}
 
+	encryptCaesar(cypher, cypherSize, 'd');
+
 	;
 	/* Display Cypthertext */
 	printf("\nCypher Text:\n%s\nCypher Size: %d\n", cypher, cypherSize);
@@ -211,8 +213,12 @@ void testCaesar(char cypher[], int size) {
 	int numE = 0;
 	int ptsize = 0;
 
+	for (i = 0; i < size; i++) {
+		plaintext[i] = '\0';
+	}
+
 	/* Open File For APPENDING */
-	fp = fopen(filename,"a");
+	fp = fopen(filename,"w");
 
 	/* Loop Through Alphabet */
 	for ( x = 0; x < 26; x++ ) {
@@ -270,11 +276,18 @@ char *encryptCaesar(char plain[], int size, char key) {
 	for (i = 0; i < size; i++) {
 		plain[i] = tolower(plain[i]);
 		if ((plain[i] < baseletter) || (plain[i] > lastletter)) {
-			cypher[i] = plain[i];
+			*cypher = plain[i];
 		} else {
-			cypher[i] = (((plain[i] - baseletter) + l_key) % 26) + baseletter;
+			*cypher = (((plain[i] - baseletter) + l_key) % 26) + baseletter;
 		}
+		cypher++;
 	}
+
+	for (; i > 0; i--) {
+		cypher--;
+	}
+
+	printf("\nENCRYPTED:\n%s\n", cypher);
 	return cypher;
 }
 
